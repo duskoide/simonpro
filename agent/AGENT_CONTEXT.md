@@ -42,7 +42,9 @@ The app runs **offline** with a local PostgreSQL database. Two user roles:
 - `pkg/` — empty
 
 ### Database (`database/`)
-- `init.sql` — empty
+- `init.sql` — full schema with 6 tables, 2 enums, CHECK constraints
+- `schema.html` — visual ER diagram
+- `dummy.sql` — empty
 - `dummy.sql` — empty
 
 ### Frontend (`frontend/`)
@@ -138,13 +140,13 @@ All modules interact through the local database as the central data store.
 | C-01 | User | userId, username, password, role |
 | C-02 | AuthService | login(), logout(), validateUser(), hashPassword() |
 | C-03 | Session | sessionId, userId, loginTime, status |
-| C-04 | Produk | kodeProduk, namaProduk, deskripsiProduk, statusAktif, kategori |
+| C-04 | Produk | kodeProduk, namaProduk, deskripsiProduk, satuan, gambar, statusAktif, kategori (FK → namaKategori) |
 | C-05 | KategoriProduk | kategori_id, namaKategori |
 | C-06 | ProdukService | tambahProduk(), ubahProduk(), hapusProduk(), validasiProduk() |
 | C-07 | KategoriService | tambahKategori(), hapusKategori(), validasiKategori() |
 | C-08 | TargetProduksi | targetId, produk, periode, tanggalMulai, tanggalSelesai, jumlahTarget |
 | C-09 | TargetService | tetapkanTarget(), ubahTarget(), hapusTarget() |
-| C-10 | ProduksiHarian | produksiId, tanggal, produk, jumlahAktual, jumlahDefect, penanggungJawab, catatanKendala |
+| C-10 | ProduksiHarian | produksiId, tanggal, produk, jumlahAktual, jumlahDefect, penanggungJawab, kendalaProduksi |
 | C-11 | ProduksiHarianService | catatProduksi(), validasiProduksi() |
 | C-12 | PencapaianService | hitungPersentasePencapaian() |
 | C-13 | DefectService | hitungTingkatDefect() |
