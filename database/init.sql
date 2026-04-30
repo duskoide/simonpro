@@ -23,7 +23,7 @@ CREATE TABLE produk (
     satuan          VARCHAR(50),
     gambar          TEXT,
     status_aktif    BOOLEAN      NOT NULL DEFAULT TRUE,
-    kategori_id     INT          NOT NULL REFERENCES kategori_produk(kategori_id)
+    nama_kategori   VARCHAR(100) NOT NULL REFERENCES kategori_produk(nama_kategori)
 );
 
 CREATE TABLE target_produksi (
@@ -43,7 +43,7 @@ CREATE TABLE produksi_harian (
     jumlah_aktual    INT          NOT NULL CHECK (jumlah_aktual >= 0),
     jumlah_defect    INT          NOT NULL CHECK (jumlah_defect >= 0),
     penanggung_jawab VARCHAR(255) NOT NULL,
-    catatan_kendala  TEXT,
+    kendala_produksi  TEXT,
     CONSTRAINT chk_defect_not_exceed_aktual CHECK (jumlah_defect <= jumlah_aktual)
 );
 
